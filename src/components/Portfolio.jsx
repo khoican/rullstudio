@@ -8,7 +8,7 @@ const Portfolio = (props) => {
       } justify-between items-start`}
     >
       <img
-        src={`/src/assets/${data.image}`}
+        src={`/${data.image}`}
         alt={data.title}
         className={`${animation} w-full md:w-4/12 rounded`}
       />
