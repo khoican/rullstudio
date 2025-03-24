@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense, lazy } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../assets/hero.svg";
 import AboutImage from "../assets/about.svg";
@@ -12,6 +12,8 @@ import Footer from "../components/Footer";
 import FloatingButton from "../elements/FloatingButton";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { Typewriter } from "react-simple-typewriter";
+
+const Sidebar = lazy(() => import("../components/Sidebar"));
 
 // Hook untuk mendeteksi apakah elemen terlihat di viewport
 const useInView = (threshold = 0.5) => {
@@ -40,6 +42,7 @@ const useInView = (threshold = 0.5) => {
 
 const Home = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,16 +58,24 @@ const Home = () => {
   const [portfolioRef, portfolioHasAnimated] = useInView(0.5);
   const [contactRef, contactHasAnimated] = useInView(0.5);
 
+  const handleSidebar = () => setOpenSidebar(!openSidebar);
+
   return (
     <>
       {scrolled && (
         <FloatingButton link="https://wa.me/6387856354115" icon={faWhatsapp} />
       )}
-      <Navbar scrolled={scrolled} />
+      <Navbar scrolled={scrolled} openSidebar={handleSidebar} />
 
-      <header className="w-full h-screen bg-gradient-to-t from-light to-primary px-24 flex items-center">
-        <section className="w-1/2 text-white">
-          <h1 className="text-5xl font-bold">
+      <Suspense>
+        {openSidebar && (
+          <Sidebar closeSidebar={handleSidebar} isOpen={openSidebar} />
+        )}
+      </Suspense>
+
+      <header className="w-full h-screen bg-gradient-to-t from-light to-primary px-5 md:px-10 lg:px-24 flex flex-col md:flex-row md:items-center">
+        <section className="md:w-1/2 h-[50vh] md:h-full text-white flex flex-col md:items-start justify-end md:justify-center gap-1">
+          <h1 className="text-4xl md:text-5xl font-bold font-montserrat">
             <Typewriter
               words={["Make Your Dreams Come True", "Build Your Business"]}
               loop={0}
@@ -75,24 +86,24 @@ const Home = () => {
               delaySpeed={1000}
             />
           </h1>
-          <p className="font-extralight text-2xl">
+          <p className="font-extralight text-xl md:text-2xl">
             with <span className="font-semibold">RULL STUDIO</span>
           </p>
         </section>
-        <section className="w-1/2 h-full flex items-end">
+        <section className="md:w-1/2 h-[50vh] md:h-full flex items-end">
           <img src={Hero} alt="Hero" className="animate-fade-up" />
         </section>
       </header>
 
-      <main className="px-24 pt-10">
+      <main className="px-5 md:px-10 lg:px-24 pt-10">
         {/* About Section */}
         <section
           ref={aboutRef}
           id="about"
-          className="flex items-start gap-5 w-full pt-28"
+          className="flex flex-col md:flex-row items-start gap-5 w-full pt-28"
         >
           <section
-            className={`w-1/2 transition-all duration-500 ${
+            className={`md:w-1/2 transition-all duration-500 ${
               aboutHasAnimated
                 ? "animate-fade-right"
                 : "opacity-0 translate-x-10"
@@ -105,13 +116,13 @@ const Home = () => {
             </p>
           </section>
           <section
-            className={`w-1/2 flex justify-end transition-all duration-500 ${
+            className={`md:w-1/2 mt-4 md:mt-0 flex justify-end transition-all duration-500 ${
               aboutHasAnimated
                 ? "animate-fade-left"
                 : "opacity-0 -translate-x-10"
             }`}
           >
-            <img src={AboutImage} alt="About" className="w-9/12" />
+            <img src={AboutImage} alt="About" className="w-11/12 md:w-9/12" />
           </section>
         </section>
 
@@ -127,7 +138,7 @@ const Home = () => {
               Kami menyediakan berbagai paket layanan sesuai kebutuhan anda
             </p>
           </section>
-          <section className="w-full flex items-center gap-2 mt-10">
+          <section className="max-md:overflow-x-auto md:overflow-x-visible md:w-full flex items-center gap-2 mt-10">
             <Services
               data={services.mahasiswa}
               animation={
@@ -169,7 +180,7 @@ const Home = () => {
               digital
             </p>
           </section>
-          <section className="w-full flex flex-col items-center gap-10 mt-10">
+          <section className="w-full flex flex-col items-center gap-16 mt-10">
             <Portfolio
               data={portfolio.simr}
               animation={
@@ -194,18 +205,22 @@ const Home = () => {
         <section
           ref={contactRef}
           id="contact"
-          className="flex items-start mt-24 w-full pt-28"
+          className="flex max-md:flex-col max-md:justify-center items-center md:items-start mt-24 w-full pt-28"
         >
           <section
-            className={`w-1/2 transition-all duration-500 ${
+            className={`w-full md:w-1/2 transition-all duration-500 ${
               contactHasAnimated
                 ? "animate-fade-right"
                 : "opacity-0 translate-x-10"
             }`}
           >
-            <img src={ContactImage} alt="Contact" className="w-9/12" />
+            <img
+              src={ContactImage}
+              alt="Contact"
+              className="max-md:w-full md:w-9/12"
+            />
           </section>
-          <section className="w-1/2">
+          <section className="w-full md:w-1/2 max-md:mt-10">
             <Title title="Contact" />
             <p className="mt-2 text-sm">
               Kapanpun anda butuhkan, kami selalu ada

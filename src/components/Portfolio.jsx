@@ -4,15 +4,15 @@ const Portfolio = (props) => {
   return (
     <section
       className={`flex ${
-        reverse ? "flex-row-reverse" : ""
+        reverse ? "flex-col md:flex-row-reverse" : "flex-col md:flex-row"
       } justify-between items-start`}
     >
       <img
         src={`/src/assets/${data.image}`}
         alt={data.title}
-        className={`${animation} w-4/12 rounded`}
+        className={`${animation} w-full md:w-4/12 rounded`}
       />
-      <aside className={`${animation} w-1/2`}>
+      <aside className={`${animation} w-full md:w-1/2 max-md:mt-5`}>
         <p className="text-xs font-light">{data.owner}</p>
         <h5 className="mt-3 font-medium text-2xl">{data.title}</h5>
         <p className="text-sm mt-5 text-justify">{data.body}</p>

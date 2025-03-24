@@ -8,8 +8,8 @@ const Services = (props) => {
     <aside
       className={`${
         priority
-          ? "border-2 border-primary w-5/12 p-10 min-h-[420px]"
-          : "border-2 w-4/12 p-6 min-h-[360px]"
+          ? "border-2 border-primary max-md:w-screen md:w-5/12 p-10 min-h-[420px]"
+          : "border-2 max-md:w-screen md:w-4/12 p-6 min-h-[360px]"
       } ${animation} rounded-xl drop-shadow-md bg-white`}
     >
       <h5

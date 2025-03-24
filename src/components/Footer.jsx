@@ -6,11 +6,11 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 const Footer = () => {
   return (
     <footer className="mt-40 pb-7">
-      <section className="flex items-start">
-        <aside className="w-7/12">
+      <section className="flex max-md:flex-col items-start">
+        <aside className="w-full md:w-7/12">
           <img src={Logo} alt="Logo Rull Studio" className="w-20" />
         </aside>
-        <aside className="w-5/12 flex justify-between">
+        <aside className="max-md:mt-5 w-full md:w-5/12 flex justify-between">
           <div>
             <h5 className="text-lg font-semibold font-montserrat">
               RULL STUDIO
