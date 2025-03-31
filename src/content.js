@@ -1,7 +1,4 @@
 export const content = {
-  about: {
-    body: "merupakan sebuah penyedia jasa layanan pembuatan website yang berkomitmen memberikan pelayanan terbaik dan berkualitas. Terdiri dari spesialis IT profesional menjadikan kami partner kerja terpercaya. Kami selalu menjaga kualitas dari produk yang kami hasilkan sehingga memberikan rasa puas serta menjadi solusi praktis bagi permasalahan anda.",
-  },
   contact: {
     body: "Memberikan pelayanan terbaik dan profesional menjadi komitmen kami. Membantu memberikan solusi digital adalah tujuan kami. Segera konsultasikan kebutuhan anda, kami siap membantu.",
     button: "Hubungi Sekarang",

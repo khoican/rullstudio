@@ -87,7 +87,7 @@ const Home = () => {
             />
           </h1>
           <p className="font-extralight text-xl md:text-2xl">
-            with <span className="font-semibold">RULL STUDIO</span>
+            with <h1 className="font-semibold">RULL STUDIO</h1>
           </p>
         </section>
         <section className="md:w-1/2 h-[50vh] md:h-full flex items-end">
@@ -110,9 +110,19 @@ const Home = () => {
             }`}
           >
             <Title title="About" />
-            <p className="mt-5 text-justify text-sm">
-              <span className="font-semibold">RULL STUDIO</span>{" "}
-              {content.about.body}
+            <p className="mt-5 text-sm text-justify">
+              <h1 className="font-semibold whitespace-nowrap inline">
+                RULL STUDIO
+              </h1>{" "}
+              merupakan penyedia{" "}
+              <h1 className="whitespace-nowrap inline">
+                jasa layanan pembuatan website
+              </h1>{" "}
+              yang berkomitmen memberikan pelayanan terbaik dan berkualitas.
+              Terdiri dari spesialis IT profesional menjadikan kami partner
+              kerja terpercaya. Kami selalu menjaga kualitas dari produk yang
+              kami hasilkan sehingga memberikan rasa puas serta menjadi solusi
+              praktis bagi permasalahan anda.
             </p>
           </section>
           <section
